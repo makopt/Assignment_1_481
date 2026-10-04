@@ -1,8 +1,8 @@
 # Assignment: Capacitated Facility Location Problem - Student Guide
 
 **Course:** CS616 - Optimization Algorithms  
-**Semester:** 2, AY 2025-2026  
-**Due Date:** May 16, 2026, 11:59 PM  
+**Semester:** 1, AY 2026-2027  
+**Due Date:** November 07, 2026, 11:59 PM  
 **Instructors:** Dr. Mahdi Khemakhem & Dr. Essra Aldessouki  
 **Total Marks:** 20 + 3 (Bonus)
 
@@ -23,12 +23,6 @@
 11. [Academic Integrity](#11-academic-integrity)
 12. [Getting Help](#12-getting-help)
 13. [Your Analysis and Answers](#13-your-analysis-and-answers)
-    - [Section A: Solution Quality Analysis](#section-a-solution-quality-analysis-4-marks)
-    - [Section B: Computational Efficiency Analysis](#section-b-computational-efficiency-analysis-4-marks)
-    - [Section C: Scalability Analysis](#section-c-scalability-analysis-3-marks)
-    - [Section D: Quality-Time Tradeoff Analysis](#section-d-quality-time-tradeoff-analysis-3-marks)
-    - [Section E: Algorithm Understanding](#section-e-algorithm-understanding-3-marks)
-    - [Section F: Critical Reflection](#section-f-critical-reflection-3-marks)
 
 ---
 
@@ -38,20 +32,20 @@ In this assignment, you will:
 1. **Implement** a Variable Neighborhood Search (VNS) metaheuristic for the Capacitated Facility Location Problem
 2. **Compare** VNS with an exact solver (Gurobi) on 144 test instances
 3. **Analyze** the performance in terms of solution quality, computational time, and scalability
-4. **Document** your findings in this file with detailed analysis
+4. **Document** your findings in `My_Answers.md` with detailed analysis
 
 ### What You Need to Do:
 
 ✅ **Update your student ID and Gurobi license** in the notebook  
 ✅ **Run ALL cells** in the notebook (from top to bottom)  
 ✅ **Analyze the generated results**  
-✅ **Answer all questions** in this document (Section 13) with specific references to your results and plots.
-✅ **Submit** the notebook + this completed document + results files
+✅ **Answer all questions** in `My_Answers.md` with specific references to your results and plots.
+✅ **Submit** the link of your GitHub fork (renamed with your ID and name) on Blackboard - see [Section 10](#10-submission-guidelines)
 
 **IMPORTANT:** You do NOT need to implement anything! All code is provided. You only need to:
 1. Update two variables (STUDENT_ID and GUROBI_VERSION) in the last cell
 2. Run all cells in order
-3. Analyze the results and answer questions in Section 13
+3. Analyze the results and answer the questions in `My_Answers.md`
 
 **📊 REALISTIC BENCHMARK INSTANCES**
 The instances use a **research-based ratio model** with α computed against **optimal service cost** to create realistic difficulty patterns:
@@ -59,17 +53,11 @@ The instances use a **research-based ratio model** with α computed against **op
   - Small: 30-50 facilities, 150-300 clients (~4,500-15,000 variables)
   - Medium: 60-90 facilities, 400-700 clients (~24,000-63,000 variables)
   - Large: 100-150 facilities, 800-1500 clients (~80,000-225,000 variables)
-- **Performance Expectations:**
-  - **Gurobi:** 0.1-0.4s (small), 0.5-3.5s (medium), 3-15s (large)
-  - **VNS:** 0.05-0.2s (small), 0.2-0.9s (medium), 0.8-2.5s (large)
-  - **Average Speedup:** ~2.88x (VNS faster than Gurobi)
-- **Solution Quality Pattern:**
-  - Average gap: ~0.85% (excellent quality across all instances)
-  - Easy (α=0.3-0.6): ~0.33% gap (VNS finds near-optimal)
-  - Moderate (α=0.8-1.5): ~0.92% gap (still excellent!)
-  - Expensive (α=2.0-4.0): ~1.31% gap (very good solutions)
-  - 100% instances achieve gap < 5% (perfect quality!)
-- **Total experiment runtime: 20-45 minutes** (reasonable for classroom assignment)
+- **Performance Expectations (approximate, depend on your hardware and ID):**
+  - **Gurobi:** fractions of a second (small) up to several seconds (large)
+  - **VNS:** usually faster than Gurobi, especially on medium and large instances
+  - **Solution quality:** the provided VNS has a known weakness (see Section 8). Report what YOU observe - do not assume any gap values in advance.
+- **Total experiment runtime: 10-20 minutes** (depending on your hardware)
 
 ---
 
@@ -154,11 +142,11 @@ $$\min \sum_{j \in J} f_j y_j + \sum_{i \in I} \sum_{j \in J} c_{ij} x_{ij}$$
 **Your only tasks are:**
 1. Update **TWO variables** (STUDENT_ID and GUROBI_VERSION) in the last code cell
 2. Run ALL cells in the notebook (from top to bottom)
-3. Analyze the results and answer questions in Section 10
+3. Analyze the results and answer the questions in `My_Answers.md`
 
 ### Structure of the Notebook
 
-The notebook `Assignment_1.ipynb` is organized into 9 sections:
+The notebook `Assignment_1.ipynb` is organized into 9 numbered sections plus a final student-configuration cell:
 
 #### **Section 1: Problem Description** ✅ PROVIDED
 - Mathematical formulation
@@ -203,7 +191,7 @@ The notebook `Assignment_1.ipynb` is organized into 9 sections:
 - Functions: `plot_convergence()`, `run_experiments()`, `visualize_results()`, etc.
 - **Action: RUN the cell**
 
-#### **Section 10: Student Configuration** ⚠️ YOUR TURN!
+#### **Student Configuration (last cells)** ⚠️ YOUR TURN!
 - Variables to update: `STUDENT_ID`, `GUROBI_VERSION`
 - **Action: UPDATE these two variables, then RUN the cell**
 
@@ -215,7 +203,7 @@ The notebook `Assignment_1.ipynb` is organized into 9 sections:
 2. ✅ **Run all cells** in the notebook sequentially
 3. ✅ **Execute the main function** with YOUR student ID
 4. ✅ **Analyze the generated results**
-5. ✅ **Answer all questions** in Section 13 of this document
+5. ✅ **Answer all questions** in `My_Answers.md`
 
 ---
 
@@ -287,11 +275,11 @@ GUROBI_VERSION = "academic"  # I have an academic license
   - VNS: 0.05-0.5s per instance (very fast)
   - 144 instances typically complete in 10-20 minutes on modern hardware
 - Progress displayed in real-time with instance-by-instance results
-- **⚠️ Note:** The provided VNS implementation has a known bug that limits its performance on many instances. See Section 13 (Bonus Question) for details
+- **⚠️ Note:** The provided VNS implementation has a known bug that limits its performance on many instances. See Section 8 (Bonus Question) for details
 - **⚠️ Important Note About VNS Performance:**
   - The provided VNS implementation has a bug that causes poor performance on many instances
   - You may observe gaps greater than 20% on multiple instances
-  - This is intentional for educational purposes - see Section 13 (Bonus Question)
+  - This is intentional for educational purposes - see Section 8 (Bonus Question)
   - Your analysis should identify and explain these performance issues
 
 #### Step 5: Check Generated Files
@@ -301,7 +289,7 @@ After completion, verify all output files are created (see next section)
 Open the generated plots and Excel files to analyze the results
 
 #### Step 7: Answer Questions
-Complete Section 13 of this document with your analysis
+Complete `My_Answers.md` with your analysis
 
 ---
 
@@ -315,7 +303,8 @@ After running the main function, you will have the following files:
 📁 Your_Working_Directory/
 │
 ├── 📄 Assignment_1.ipynb                           # Your notebook
-├── 📄 Assignment_1_Student_Guide.md                # This file (to complete)
+├── 📄 Assignment_1_Student_Guide.md                # Guide (do not edit)
+├── 📄 My_Answers.md                                # Your answers (to complete)
 │
 ├── 📁 cflp_instances_student_{YOUR_ID}/            # 144 JSON instance files
 │   ├── 001_cflp_small_easy_fac17_cli55.json
@@ -355,9 +344,9 @@ After running the main function, you will have the following files:
     - Medium: 60-90 facilities, 400-700 clients (~24,000-63,000 variables)
     - Large: 100-150 facilities, 800-1500 clients (~80,000-225,000 variables)
   - **Difficulties (via α - Fixed-to-OPTIMAL-Service Cost RATIO):**
-    - Easy: α ∈ [0.3, 0.6] → Fixed costs 30-60% of **optimal service** → Open many facilities → ~0.33% gap
-    - Moderate: α ∈ [0.8, 1.5] → Fixed ≈ **Optimal service** → Balanced trade-offs → ~0.92% gap
-    - Expensive: α ∈ [2.0, 4.0] → Fixed costs 2-4× **optimal service** → Open few facilities → ~1.31% gap
+    - Easy: α ∈ [0.3, 0.6] → Fixed costs 30-60% of **optimal service** → Open many facilities
+    - Moderate: α ∈ [0.8, 1.5] → Fixed ≈ **Optimal service** → Balanced trade-offs
+    - Expensive: α ∈ [2.0, 4.0] → Fixed costs 2-4× **optimal service** → Open few facilities
   - **Noise:** Constant 15% proportional noise for ALL difficulties (difficulty comes from α, not noise!)
   - **Spatial Distribution:** 1000×1000 coordinate space with unique positions (no overlaps)
   - **16 instances per size-difficulty combination**
@@ -369,7 +358,7 @@ After running the main function, you will have the following files:
   - This creates **realistic business scenarios** where both exact and heuristic methods provide insights
   - Constant noise (15%) adds realism without artificially helping/hindering algorithms
   - All coordinates are guaranteed unique (no overlapping entities)
-  - **Balanced for education**: Gurobi solves all optimally, VNS provides excellent approximations with speedup
+  - **Balanced for education**: Gurobi can solve these instances to optimality (academic license), which gives a reference for measuring the VNS gap
 
 #### 2. Convergence Plots (`convergence_plots_student_{YOUR_ID}/`)
 - **Count:** Up to 144 PNG files (depends on Gurobi version)
@@ -412,7 +401,7 @@ After running the main function, you will have the following files:
 - Overall statistics
 - Use for: Quick reference of important numbers
 
-#### 4. Main Visualization (`comparison_analysis.png`)
+#### 4. Main Visualization (`comparison_analysis_student_{YOUR_ID}.png`)
 - **Content:** Combined 6-plot figure
 - **Subplots:**
   1. Gap distribution by size
@@ -488,7 +477,7 @@ This ensures that:
 
 ## 7. Analysis Questions
 
-You must answer the following questions in **Section 13** of this document. Use the generated plots, Excel files, and your understanding of the algorithms to provide comprehensive answers.
+You must answer the following questions in **`My_Answers.md`**. Use the generated plots, Excel files, and your understanding of the algorithms to provide comprehensive answers.
 
 ### Important Notes:
 - All questions require **detailed analysis** with **specific numbers** from YOUR results
@@ -537,10 +526,11 @@ You must answer the following questions in **Section 13** of this document. Use 
 - Describe how Gurobi computation time scales with problem size.
 - Which algorithm exhibits better scalability? Justify your answer.
 
-**C.2** (1.5 marks) Analyze the growth rate:
-- Based on the scatter plots, estimate the time complexity (linear, quadratic, exponential)?
-- Using the trend, predict the expected runtime for an "Extra Large" instance (e.g., n=50, m=20) for both algorithms.
-- Would VNS be more suitable for very large instances? Why or why not?
+**C.2** (1.5 marks) Analyze the growth rate (from your data only - no theory needed):
+- From your results, compute how the average runtime changes when moving from Small to Medium and from Medium to Large (e.g., "Gurobi time is multiplied by about 4x"). Do this for both VNS and Gurobi.
+- Describe the shape of the growth you observe in Plot 04: roughly steady, steadily increasing, or sharply increasing?
+- Using these growth ratios, give a rough prediction of the runtime for an "Extra Large" instance (e.g., n=50, m=20) for both algorithms, and explain how you computed it.
+- Based on your observations, would VNS be more suitable for very large instances? Why or why not?
 
 ---
 
@@ -588,10 +578,10 @@ You must answer the following questions in **Section 13** of this document. Use 
 - If deploying this in a real logistics company, what additional constraints or objectives would be needed?
 - Consider: service time windows, vehicle routing, multi-period planning, stochastic demand, etc.
 
-**F.3** (1 mark) Theory vs Practice:
-- Compare the theoretical time complexity with your empirical results.
-- Are they consistent? If not, what factors explain the difference?
-- Discuss the practical value of heuristics like VNS in industrial settings.
+**F.3** (1 mark) Exact Method vs Heuristic in Practice:
+- Check the `gurobi_status` column of your results: for how many instances did Gurobi prove optimality, and how many stopped at the time limit?
+- Gurobi guarantees the optimal solution (when it finishes) while VNS does not. Using your results, explain what VNS gives up and what it gains.
+- Discuss the practical value of heuristics like VNS in industrial settings, based on what you observed.
 
 ---
 
@@ -624,21 +614,22 @@ To earn the 3 bonus marks, you must:
 
 ### 📤 Submission for Bonus
 
-Submit an **additional improved notebook** named:
+Push an **additional improved notebook** to your forked repository, named:
 ```
 StudentID_FirstName_LastName_Assignment1_IMPROVED.ipynb
 ```
 
-**Example:** `20231234_Ali_Ben_Ahmed_Assignment2_IMPROVED.ipynb`
+**Example:** `20231234_Ali_Ben_Ahmed_Assignment1_IMPROVED.ipynb`
 
 **The improved notebook should include:**
 - ✅ The fixed VNS code (with comments explaining your fix)
-- ✅ Results from running with the fixed version
-- ✅ A new markdown cell at the end titled "## BONUS: VNS Improvement" containing:
-  - Description of the bug you found
-  - Explanation of your fix
-  - Comparison table (original vs improved results)
-  - Analysis of why your fix works
+- ✅ Results from running with the fixed version (push the results files too)
+
+**Your written bonus answer goes in Section G of `My_Answers.md`:**
+- Description of the bug you found
+- Explanation of your fix
+- Comparison table (original vs improved results)
+- Analysis of why your fix works
 
 ### 💡 Hints to Get Started
 
@@ -693,7 +684,7 @@ By attempting this bonus challenge, you will:
 |-----------|-------|----------|
 | **A. Solution Quality Analysis** | 4 | Accurate gap analysis, proper interpretation of statistics, specific numerical values |
 | **B. Computational Efficiency** | 4 | Correct time comparisons, speedup analysis, practical insights |
-| **C. Scalability Analysis** | 3 | Understanding of algorithm growth, complexity estimation, predictions |
+| **C. Scalability Analysis** | 3 | Understanding of how runtime grows with size (from your data), reasonable predictions |
 | **D. Quality-Time Tradeoff** | 3 | Identification of tradeoffs, practical recommendations, justified decisions |
 | **E. Algorithm Understanding** | 3 | Deep understanding of VNS mechanics, convergence analysis, neighborhood roles |
 | **F. Critical Reflection** | 3 | Thoughtful limitations, realistic improvements, practical considerations |
@@ -734,46 +725,81 @@ By attempting this bonus challenge, you will:
 
 ## 10. Submission Guidelines
 
-### What to Submit:
+### Submission = Your Own GitHub Fork
+
+You do **not** submit a ZIP file. Instead, you work in **your own fork** of the course repository and submit **the link to your fork** on Blackboard.
+
+### Step 1: Fork and rename the repository
+
+1. Sign in to GitHub (create a free account if needed).
+2. Open the course repository: https://github.com/makopt/Assignment_1
+3. Click **Fork** (top-right) -> **Create fork**.
+4. In your fork, go to **Settings -> General -> Repository name**, rename it to:
+
+   ```
+   Assignment_1_StudentID_FirstName_LastName
+   ```
+
+   **Example:** `Assignment_1_20231234_Ali_Ben_Ahmed`
+
+5. Clone **your fork** (not the original) to your computer:
+
+   ```bash
+   git clone https://github.com/<your-username>/Assignment_1_20231234_Ali_Ben_Ahmed.git
+   ```
+
+> Keep the fork **public** (GitHub does not allow a fork of a public repository to be made private), so that the instructors can open it without extra access.
+
+### Step 2: Do the work inside your cloned fork
+
+Complete the assignment as described in this guide. Save everything inside the cloned folder.
+
+### Step 3: Commit and push your work
+
+```bash
+git add Assignment_1.ipynb My_Answers.md results_student_*.csv results_student_*.xlsx comparison_analysis_student_*.png analysis_plots_student_*
+git commit -m "Assignment 1 - <StudentID> <FirstName LastName>"
+git push origin main
+```
+
+Then refresh your repository page on GitHub and check that all files are visible and the notebook shows its outputs.
+
+### What Your Repository Must Contain:
 
 1. ✅ **Completed Jupyter Notebook:** `Assignment_1.ipynb`
    - All cells executed successfully
    - Output visible for all cells
    - Your student ID clearly used in main function
 
-2. ✅ **Completed Student Guide:** `Assignment_1_Student_Guide.md` (this file)
-   - All questions in Section 13 answered completely
-   - Include your student ID at the top of Section 13
+2. ✅ **Completed answers file:** `My_Answers.md`
+   - All questions (Sections A-F) answered completely
+   - Include your student ID and name at the top
    - Use proper markdown formatting
+   - Do not modify `Assignment_1_Student_Guide.md`
 
 3. ✅ **Results Files:**
    - `results_student_{YOUR_ID}.csv`
    - `results_student_{YOUR_ID}.xlsx`
-   
+
 4. ✅ **Key Visualizations:**
    - `comparison_analysis_student_{YOUR_ID}.png`
    - All 6 files from `analysis_plots_student_{YOUR_ID}/`
 
-5. ❌ **DO NOT submit:**
-   - Instance files (cflp_instances folder - too large)
-   - All convergence plots (convergence_plots folder - too large)
-   - You can submit just 3-5 sample convergence plots for question E.2
+5. ❌ **DO NOT push:**
+   - Instance files (`cflp_instances` folder - too large)
+   - All convergence plots (`convergence_plots` folder - too large)
+   - You may push just 3-5 sample convergence plots (folder `sample_convergence_plots/`) for question E.2
 
 6. ✅ **BONUS (Optional - 3 marks):**
    - `StudentID_FirstName_LastName_Assignment1_IMPROVED.ipynb` (your improved VNS version)
    - Results from the improved version showing better performance
 
-### Submission Format:
-
-**Create a ZIP file named:** `StudentID_FirstName_LastName_Assignment1.zip`
-
-**Example:** `20231234_Ali_Ben_Ahmed_Assignment1.zip`
-
-**ZIP Contents:**
+**Expected repository content:**
 ```
-20231234_Ali_Ben_Ahmed_Assignment1.zip
+Assignment_1_20231234_Ali_Ben_Ahmed/
 ├── Assignment_1.ipynb
-├── Assignment_1_Student_Guide.md (with your answers)
+├── Assignment_1_Student_Guide.md (unchanged)
+├── My_Answers.md (your answers)
 ├── results_student_20231234.csv
 ├── results_student_20231234.xlsx
 ├── comparison_analysis_student_20231234.png
@@ -785,31 +811,33 @@ By attempting this bonus challenge, you will:
 │   ├── 05_quality_time_tradeoff.png
 │   └── 06_statistical_summary_dashboard.png
 └── sample_convergence_plots/ (optional - 3-5 plots for E.2)
-    ├── plot1.png
-    ├── plot2.png
-    └── plot3.png
 ```
 
-**Expected ZIP Size:** 5-15 MB (without instance files and all convergence plots)
+> Tip: the repository already contains a `.gitignore` that excludes the generated instance and convergence-plot folders. Check `git status` before committing to be sure nothing large is added.
 
 ### Submission Checklist:
 
-Before submitting, verify:
+Before submitting the link, verify:
 
+- [ ] You forked the repository and renamed it `Assignment_1_StudentID_FirstName_LastName`
 - [ ] Your student ID is used in the notebook (NOT someone else's!)
 - [ ] All cells in the notebook executed successfully
 - [ ] All questions in this guide are answered completely
 - [ ] Specific numerical values from YOUR results are included
 - [ ] Plots are referenced in your answers
-- [ ] All required files are included in the ZIP
-- [ ] ZIP file is named correctly with YOUR ID and name
-- [ ] File size is reasonable (< 20 MB)
+- [ ] All required files are committed and **pushed** (visible on GitHub in your browser)
+- [ ] The repository is public and the link opens without logging in (test it in a private/incognito window)
 
 ### Submission Platform:
 
 Submit via: **Blackboard on the dedicated rubric**
 
-**Deadline:** May 16, 2026 11:59 PM
+**What to submit on Blackboard:** the **link (URL) of your forked repository**, e.g.
+`https://github.com/<your-username>/Assignment_1_20231234_Ali_Ben_Ahmed`
+
+**Deadline:** November 07, 2026 11:59 PM
+
+> The deadline applies to your **last commit**. Commits pushed after the deadline are considered late.
 
 **Late Policy:** Late will be graded 0, no exceptions (plan ahead!)
 
@@ -870,309 +898,14 @@ Violations of academic integrity will result in:
 
 # 13. YOUR ANALYSIS AND ANSWERS
 
-**Student Information:**
-- **Student ID:** ___________________________
-- **Student Name:** ___________________________
-- **Gurobi Version Used:** [ ] Academic [ ] Free
-- **Date Completed:** ___________________________
-
----
-
-## Section A: Solution Quality Analysis (4 marks)
-
-### A.1 (2 marks) - Gap Analysis by Categories
-
-**Analysis of Plot 01:**
-
-[Your answer here - analyze gap patterns by size and difficulty]
-
-**Specific Observations:**
-- Highest median gap size: ___________
-- Median gap value: ___________%
-- Effect of difficulty on gap: ___________
-
-**Outliers identified:**
-
-[Explain outliers and their possible causes]
-
-**Interpretation:**
-
-[Explain WHY these patterns occur]
-
----
-
-### A.2 (2 marks) - Overall Solution Quality Statistics
-
-**From Excel File (Sheet "All Results"):**
-
-- Total instances analyzed: ___________
-- Instances with gap < 5%: ___________ ( _____% )
-- Instances with gap < 10%: ___________ ( _____% )
-- Mean gap across all instances: ___________%
-- Standard deviation of gap: ___________%
-
-**Interpretation:**
-
-[Analyze what these statistics tell you about VNS consistency and quality]
-
-[Is VNS providing good solutions consistently? Explain]
-
----
-
-## Section B: Computational Efficiency Analysis (4 marks)
-
-### B.1 (2 marks) - Time Comparison
-
-**Analysis of Plot 02:**
-
-**Size at which VNS becomes significantly faster:**
-
-[Your answer with specific size category and time values]
-
-**Most challenging configurations:**
-- For VNS: ___________ (size-difficulty) with time: _____ seconds
-- For Gurobi: ___________ (size-difficulty) with time: _____ seconds
-
-**Detailed Comparison:**
-
-[Explain the time differences and their implications]
-
----
-
-### B.2 (2 marks) - Speedup Analysis
-
-**Analysis of Plot 03:**
-
-**Average speedup factors:**
-- Small instances: ______x faster
-- Medium instances: ______x faster
-- Large instances: ______x faster
-
-**Instances where Gurobi is faster (speedup < 1):**
-
-[List if any exist, describe their characteristics]
-
-**Practical Implications:**
-
-[Discuss what these speedup factors mean for real applications]
-
----
-
-## Section C: Scalability Analysis (3 marks)
-
-### C.1 (1.5 marks) - Scalability Behavior
-
-**Analysis of Plot 04:**
-
-**VNS Scalability:**
-
-[Describe how VNS time grows with problem size]
-
-**Gurobi Scalability:**
-
-[Describe how Gurobi time grows with problem size]
-
-**Comparison:**
-
-[Which scales better and why?]
-
----
-
-### C.2 (1.5 marks) - Growth Rate and Predictions
-
-**Estimated Time Complexity:**
-- VNS appears to be: [ ] Linear [ ] Quadratic [ ] Exponential
-- Gurobi appears to be: [ ] Linear [ ] Quadratic [ ] Exponential
-
-**Justification:**
-
-[Explain your complexity estimates based on the data]
-
-**Predictions for Extra Large Instance (n=50, m=20):**
-- Predicted VNS time: ________ seconds
-- Predicted Gurobi time: ________ seconds
-- Calculation method: ___________
-
-**Suitability for Very Large Instances:**
-
-[Would you recommend VNS for very large problems? Why?]
-
----
-
-## Section D: Quality-Time Tradeoff Analysis (3 marks)
-
-### D.1 (1.5 marks) - Sweet Spot Identification
-
-**Analysis of Plot 05:**
-
-**Sweet Spot:**
-
-[Describe the optimal balance point between quality and time]
-
-**Time Savings for High-Quality Solutions (gap < 5%):**
-- Average VNS time: ________ seconds
-- Average Gurobi time: ________ seconds
-- Absolute savings: ________ seconds
-- Relative savings: ________%
-
-**Interpretation:**
-
-[What does this mean for practitioners?]
-
----
-
-### D.2 (1.5 marks) - Practical Decision Making
-
-**Scenarios Justifying 10-15% Gap:**
-
-1. [Scenario 1 with justification]
-
-2. [Scenario 2 with justification]
-
-3. [Scenario 3 with justification]
-
-**Recommendation for Real-World Logistics Company:**
-
-[VNS or Gurobi? Explain your recommendation considering various factors]
-
----
-
-## Section E: Algorithm Understanding (3 marks)
-
-### E.1 (1.5 marks) - VNS Neighborhood Structures
-
-**Role of Each Neighborhood:**
-
-**N1 (Open Facility):**
-- Purpose: ___________
-- Contribution: [ ] Intensification [ ] Diversification
-- Explanation: ___________
-
-**N2 (Close Facility):**
-- Purpose: ___________
-- Contribution: [ ] Intensification [ ] Diversification
-- Explanation: ___________
-
-**N3 (Swap Facilities):**
-- Purpose: ___________
-- Contribution: [ ] Intensification [ ] Diversification
-- Explanation: ___________
-
-**N4 (Reassign Clients):**
-- Purpose: ___________
-- Contribution: [ ] Intensification [ ] Diversification
-- Explanation: ___________
-
-**How They Complement Each Other:**
-
-[Explain the synergy between neighborhoods]
-
----
-
-### E.2 (1.5 marks) - Convergence Behavior Analysis
-
-**Selected Convergence Plots:**
-
-**Plot 1:** [Instance name: ___________]
-- Pattern: [ ] Smooth [ ] Multiple jumps
-- Description: ___________
-- What it reveals: ___________
-
-**Plot 2:** [Instance name: ___________]
-- Pattern: [ ] Smooth [ ] Multiple jumps
-- Description: ___________
-- What it reveals: ___________
-
-**Plot 3:** [Instance name: ___________]
-- Pattern: [ ] Smooth [ ] Multiple jumps
-- Description: ___________
-- What it reveals: ___________
-
-**Role of Shaking Mechanism:**
-
-[Explain how shaking helps VNS escape local optima with evidence from plots]
-
----
-
-## Section F: Critical Reflection (3 marks)
-
-### F.1 (1 mark) - Limitations and Improvements
-
-**Main Limitations of Current VNS Implementation:**
-
-1. [Limitation 1]
-
-2. [Limitation 2]
-
-3. [Limitation 3]
-
-**Suggested Improvements:**
-
-1. [Improvement 1 with explanation of expected benefit]
-
-2. [Improvement 2 with explanation of expected benefit]
-
-3. [Improvement 3 with explanation of expected benefit]
-
----
-
-### F.2 (1 mark) - Real-World Deployment Considerations
-
-**Additional Constraints for Real Logistics Company:**
-
-1. [Constraint 1 and why it matters]
-
-2. [Constraint 2 and why it matters]
-
-3. [Constraint 3 and why it matters]
-
-**Additional Objectives:**
-
-[Discuss multi-objective considerations beyond cost minimization]
-
----
-
-### F.3 (1 mark) - Theory vs Practice
-
-**Theoretical Time Complexity:**
-- VNS theoretical: ___________
-- Gurobi theoretical: ___________
-
-**Empirical Observations:**
-
-[Describe what you actually observed from your experiments]
-
-**Consistency Analysis:**
-
-[Are theory and practice consistent? If not, explain why]
-
-**Practical Value of Heuristics:**
-
-[Discuss the industrial importance of VNS-like algorithms]
-
----
-
-## Additional Comments (Optional)
-
-[Any additional observations, challenges faced, or insights gained]
-
----
-
-## Declaration
-
-I hereby declare that:
-- I have completed this assignment independently
-- All numerical results are from MY experiments using MY student ID
-- All analysis and interpretations are MY own work
-- I have not copied results or answers from other students
-- I understand the consequences of academic dishonesty
-
-**Signature:** _______________________
-
-**Date:** ___________________________
+Your answers go in a **separate file**, `My_Answers.md`, which is provided in the repository as a template (student information, Sections A-F, additional comments and declaration).
+
+- Fill in `My_Answers.md` - do **not** write your answers in this guide.
+- Keep this guide (`Assignment_1_Student_Guide.md`) unchanged.
+- Fill in your student ID and name at the top of `My_Answers.md`.
 
 ---
 
 **END OF ASSIGNMENT DOCUMENT**
 
-*Please ensure all sections are completed before submission. Good luck!*
+*Please ensure `My_Answers.md` is completed before submission. Good luck!*
